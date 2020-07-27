@@ -1,0 +1,22 @@
+package com.cisc191;
+
+    public static void main(String [] args) {
+       int [] numbers = {12, 34, 98, 1, 45, 32, 4, 11};
+       int i;
+ 
+       System.out.print("UNSORTED: ");
+       for (i = 0; i < numbers.length; ++i) {
+          System.out.print(numbers[i] + " ");
+       }
+       System.out.println();
+ 
+       // Initial call to quicksort
+       quicksort(numbers, 0, numbers.length - 1);
+ 
+       System.out.print("SORTED: ");
+       for (i = 0; i < numbers.length; ++i) {
+          System.out.print(numbers[i] + " ");
+       }
+       System.out.println();
+    }
+ }
