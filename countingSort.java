@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 class countingSort {
   public static int[] countingSort(int[] inputArr) {
-    int i, j, k, l, m, counter, max = 0;
+    int i, j, k, l, m, max = 0;
     int length = inputArr.length;
     int[] finalArr = new int[length];
 
