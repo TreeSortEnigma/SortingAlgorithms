@@ -3,7 +3,7 @@ package com.cisc191;
 public class SelectionSort {
     // Referenced:
     // https://www.geeksforgeeks.org/selection-sort/
-    // Zybook 17.6 Selection Sort
+    // Zybooks 17.6 Selection Sort
     public static int[] sort(int[] arrayList) {
         int i, j, smallestNumber;
         for (i = 0; i < arrayList.length -1; i++) {
