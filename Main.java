@@ -1,46 +1,118 @@
 package com.company;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Main {
+public class Main  {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        //int[] array = {65, 68, 82, 42, 10, 75, 25, 47, 32, 72};
+        //the central hub. this will be given to the UIPanel.
+        SortManager sortManager = new SortManager();
 
-        int[] array = ArrayGenerator.generateArray(14);
-
-        System.out.println("random unsorted array: ");
-
-        for( int i : array ) {
-            System.out.print(i + " ");
-        }
-        System.out.println(" ");
-
-        System.out.println("sorted: ");
-        TreeSort example = new TreeSort(array);
-        example.sort();
-
-        //To do:
-        //UIWindow window = new UIWindow();
-    }
-}
-
-class UIWindow {//Handles all User Interface things
-
-    JFrame frame = new JFrame("Sorting Algorithm Visualizer");
-
-    public UIWindow() {
+        //gui stuff
+        JFrame frame = new JFrame("Sorting Algorithm Visualizer");
+        JPanel overPanel = new JPanel();
+        overPanel.setLayout(new BoxLayout(overPanel,BoxLayout.PAGE_AXIS ));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
+        JLabel arraySizeLabel = new JLabel("Array Size: ");
+        JLabel algorithmLabel = new JLabel("Algorithm: ");
+        JLabel delayLabel = new JLabel("Delay(ms): ");
+        JLabel resultsLabel = new JLabel( " Results: ");
+        JButton addAlgorithm = new JButton("+");
+        JTextField arraySizeField = new JTextField("",1);
+        JTextField delayField = new JTextField(1);
+        JPanel inputPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel algPanel = new JPanel(new BorderLayout());
+
+        //code for the drop down menu. right now this doesn't do anything.
+        //additional algorithms can be added to the string array.
+        String[] algMenuOptions = {"Quicksort"};
+        JComboBox algMenu = new JComboBox(algMenuOptions);
+        algMenu.setSelectedIndex(0);
+        algMenu.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        //the generate button prepares all the essential elements.
+        JButton generateButton = new JButton( new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int delay, size;
+
+                if (arraySizeField.getText().trim() == "") {
+                    size = 30;
+                } else {
+                    size = Integer.parseInt(arraySizeField.getText());
+                }
+
+                if (delayField.getText().trim() == "") {
+                    delay = 200;
+                } else {
+                    delay = Integer.parseInt(delayField.getText());
+                }
+                sortManager.setArray(ArrayGenerator.generateArray(size));
+                sortManager.setDelay(delay);
+                sortManager.drawBars();
+            }
+        });
+        generateButton.setText("Generate!");
+
+        //button to begin the sort
+        JButton sortButton = new JButton( new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sortManager.execute();
+            }
+        });
+        sortButton.setText("Sort!");
+
+        //here we add the gui elements onto the frmae.
+        //set up the subpanels
+        sortManager.getUIPanel().setPreferredSize(new Dimension(800, 400));
+        overPanel.setPreferredSize(new Dimension(800,200));
+        frame.add(sortManager.getUIPanel(),BorderLayout.SOUTH);
+        //input field
+        inputPanel.setPreferredSize(new Dimension(800,30));
+        inputPanel.add(arraySizeLabel);
+        inputPanel.add(arraySizeField);
+        //delay field
+        inputPanel.add(delayLabel);
+        inputPanel.add(delayField);
+        overPanel.add(inputPanel,BorderLayout.NORTH);
+        //buttons
+        buttonPanel.setPreferredSize(new Dimension(800,30));
+        buttonPanel.add(generateButton);
+        buttonPanel.add(sortButton);
+        overPanel.add(buttonPanel,FlowLayout.CENTER);
+        //algorithm select
+        algMenu.setPreferredSize(new Dimension(800,30));
+        algPanel.add(algorithmLabel, BorderLayout.WEST);
+        algPanel.add(algMenu);
+        overPanel.add(algPanel);
+
+        frame.add(overPanel,BorderLayout.NORTH);
         frame.setVisible(true);
 
-        //add additional UI elements here to take user input
     }
 
-
 }
+
+abstract class Sortable { //every algorithm will implement this method.
+
+    //this method is called beginSort() rather than sort() to avoid interfering with recursive sorts.
+    //call sort() inside this method to kick off a recursive sort.
+    public abstract void beginSort( int[] array, SortManager sortManager);
+}
+
 
 class ArrayGenerator { //returns a randomly generated array of certain size
 
@@ -53,109 +125,5 @@ class ArrayGenerator { //returns a randomly generated array of certain size
         return array;
     }
 }
-
-interface Sortable { //every algorithm will implement their own version of this method and return a sorted array.
-    int[] sort();
-}
-
-class SortManager { //will handle all sorting tasks and return outputs back to the UI window.
-
-
-}
-
-class TreeSort implements Sortable {
-
-    private BinaryTree tree;
-    private int numElements;
-
-    public TreeSort(int[] array) {
-
-        numElements = array.length;
-        tree = new BinaryTree( array );
-    }
-
-    public int[] sort() {
-
-        tree.beginTraversal(); // sort the tree
-        return tree.getArray(); // get sorted elements
-    }
-}
-
-class Node { //node in a Binary Tree
-    int value;
-    Node left;
-    Node right;
-
-    Node ( int value ) {
-        this.value = value;
-        right = null;
-        left = null;
-    }
-}
-
-//values must be: left child < parent < rightChild in increasing order
-class BinaryTree {
-
-    Node root;
-    int[] outputArray;// will hold the fully sorted array
-    int[] inputArray;
-    int index;// used to fill the output array.
-
-    public BinaryTree( int[] inputArray ) {
-
-        this.inputArray = inputArray;
-        outputArray = new  int[inputArray.length];
-        index = 0;
-
-        for( int i : inputArray ){
-            add(i);
-        }
-    }
-
-    private Node addNode ( Node currentNode, int value) { //recursively loop through values
-
-        if ( currentNode == null ) {
-            return new Node ( value ); //Empty node, so add it. The first time we use addRoot, this returns a new node.
-        }
-
-        if ( value < currentNode.value ) { //a left child is added, being smaller than the root.
-            currentNode.left = addNode( currentNode.left, value );
-        } else if ( value > currentNode.value ) {//if it is greater, a right child.
-            currentNode.right = addNode(currentNode.right, value);
-        }
-        return currentNode; //node already exists.
-    }
-
-    public void add ( int value ) {//starts addition from the root
-        root = addNode( root, value );
-    }
-
-    //in-order: left -> root -> right
-    public void inOrderTraversal(Node node) {//Do an inorder traversal while looping through the array and adding values. to start, use beginTraversal()
-
-        if( node != null ) {
-            inOrderTraversal( node.left );//check if left child exists. If it doesn't,
-            //nothing will happen. if it does, it will be printed.
-            System.out.print(" " + node.value);//print root node value
-            outputArray[index] = node.value;//add value to the array
-            index++;//increment index
-            inOrderTraversal( node.right );//check if right child exists
-        }
-    }
-
-    public void beginTraversal() //This kickstarts the traversal, which is needed because of the recursion.
-    {
-        inOrderTraversal(root);
-    }
-
-    public int[] getArray(){ //return the sorted array
-        index = 0;
-        return outputArray;
-    }
-
-}
-
-
-
 
 
