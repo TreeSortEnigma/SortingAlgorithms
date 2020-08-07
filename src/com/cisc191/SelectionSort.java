@@ -1,23 +1,38 @@
 package com.cisc191;
 
-public class SelectionSort {
-    // Referenced:
-    // https://www.geeksforgeeks.org/selection-sort/
-    // Zybooks 17.6 Selection Sort
-    public static int[] sort(int[] arrayList) {
+import java.util.Arrays;
+
+public class SelectionSort extends Sortable{
+    int delay;
+
+    public SelectionSort(int delay) { // set delay time in between steps
+        this.delay = delay;
+    }
+
+    @Override
+    public void beginSort(int[] array, SortManager sortManager) {
+        sort(array, sortManager);
+    }
+
+    //recursive sort. this is kind of like a gateway.
+    void sort(int[] array, SortManager sortManager ) {
         int i, j, smallestNumber;
-        for (i = 0; i < arrayList.length -1; i++) {
+        for (i = 0; i < array.length -1; i++) {
             smallestNumber = i;
-            for (j = i + 1; j < arrayList.length; j++) {
-                if (arrayList[j] < arrayList[smallestNumber]) {
+            for (j = i + 1; j < array.length; j++) {
+                if (array[j] < array[smallestNumber]) {
                     smallestNumber = j;
                 }
             }
-            int temp = arrayList[i];
-            arrayList[i] = arrayList[smallestNumber];
-            arrayList[smallestNumber] = temp;
-        }
 
-        return arrayList;
+            sortManager.swapIndices( i, smallestNumber, array, sortManager );
+
+            try {
+                Thread.sleep(sortManager.getDelay()); // pause the thread
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+            Arrays.fill(sortManager.highlightedElements(), "");
+        }
     }
 }

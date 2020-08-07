@@ -1,4 +1,4 @@
-package com.company;
+package com.cisc191;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +21,9 @@ class SortManager extends SwingWorker {
 
         algorithms = new ArrayList<Sortable>();
 
-        algorithms.add( new QuickSort(delay) );
+        //algorithms.add( new QuickSort(delay) );
+
+        algorithms.add( new SelectionSort(delay) );
 
     }
 

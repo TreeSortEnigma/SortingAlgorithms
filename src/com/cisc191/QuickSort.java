@@ -1,4 +1,4 @@
-package com.company;
+package com.cisc191;
 
 // here we have quicksort being used as an example. every time the the left to right marker is
 // incremented, a pause occurs. any time values are swapped, an second pause also occurs.

@@ -1,9 +1,9 @@
-package com.company;
+package com.cisc191;
 
 import javax.swing.*;
 import java.awt.*;
 
-class UIPanel extends JPanel {//This is basically just a Jpanel that draws all the boxes.
+public class UIPanel extends JPanel {//This is basically just a Jpanel that draws all the boxes.
 
     SortManager sortManager;
 
