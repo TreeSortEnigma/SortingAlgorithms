@@ -11,11 +11,14 @@ public class bubbleSort extends Sortable {
       sort(array, sortManager);
   }
 
-  void sort(int[] inputArr, SortManager sortManager) {
-    int i, j, tempInt= 0;
+  public void sort(int[] inputArr, SortManager sortManager) {
+    int i, j, plusOne, tempInt= 0;
     int length = inputArr.length;
+
+
     for( i = 0; i < length-1; i++) //loops over the indices of the array
     {
+
       for( j = 0; j < length-1-i; j++) //loops over the sub-indices
       {
 
@@ -23,14 +26,16 @@ public class bubbleSort extends Sortable {
 
           sortManager.highlightedElements()[j]= "red";
           sortManager.getUIPanel().repaint();
-
+          plusOne = j+1;
 
           tempInt = inputArr[j+1];
           inputArr[j+1] = inputArr[j];
           inputArr[j] = tempInt;
 
 
-          sortManager.swapIndices( j, j+1, inputArr, sortManager );
+          sortManager.swapIndices( (j+1), plusOne, inputArr, sortManager );
+          sortManager.getUIPanel().repaint();
+
 
           try {
             Thread.sleep(sortManager.getDelay());
@@ -40,13 +45,15 @@ public class bubbleSort extends Sortable {
 
         }
 
-
       sortManager.highlightedElements()[j] ="";
-
       sortManager.getUIPanel().repaint();
 
 
       }
+
+      sortManager.highlightedElements()[j]= "";
+      sortManager.getUIPanel().repaint();
+
     }
 
   }
