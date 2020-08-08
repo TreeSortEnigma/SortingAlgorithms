@@ -19,7 +19,7 @@ class UIPanel extends JPanel {//This is basically just a Jpanel that draws all t
         Graphics2D graphics = (Graphics2D) g;
         graphics.setColor(Color.black);
 
-        if(sortManager.isReady()) {//make sure everything's initialized first.
+        if(sortManager.getTimesInitialized() > 0) {//make sure everything's initialized first.
             for (int x = 0; x < sortManager.getArray().length; x++) {
 
                 if(sortManager.highlightedElements()[x] == "blue") {// if an element is getting swapped, the index in the array says "blue".
