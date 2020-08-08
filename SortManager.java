@@ -22,6 +22,7 @@ class SortManager extends SwingWorker {
         algorithms = new ArrayList<Sortable>();
 
         algorithms.add( new QuickSort(delay) );
+        //algorithms.add( new ShellSort(delay) );
 
     }
 
