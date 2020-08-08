@@ -13,8 +13,6 @@ public class Main  {
         //using an arraylist here allows for quick adding and deleting of sorting threads since
         //execute can only be used once per SortManager.
         ArrayList<SortManager> managers = new ArrayList<SortManager>();
-        //String to hold algorithm type
-        AlgorithmPicker algType = new AlgorithmPicker(0);
 
         //gui stuff
         JFrame frame = new JFrame("Sorting Algorithm Visualizer");
@@ -26,12 +24,12 @@ public class Main  {
         JLabel algorithmLabel = new JLabel("Algorithm: ");
         JLabel delayLabel = new JLabel("Delay(ms): ");
         JLabel resultsLabel = new JLabel( " Results: ");
-        JButton addAlgorithm = new JButton("+");
         JTextField arraySizeField = new JTextField("",1);
         arraySizeField.setText("");
         JTextField delayField = new JTextField(1);
         delayField.setText("");
-        JPanel inputPanel = new JPanel(new FlowLayout());
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(null);
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel algPanel = new JPanel(new BorderLayout());
 
@@ -54,6 +52,7 @@ public class Main  {
             public void actionPerformed(ActionEvent e) {
 
                 for ( SortManager manager : managers) { // stop current sorting
+
                     manager.cancel(true);
                 }
 
@@ -97,11 +96,15 @@ public class Main  {
         overPanel.setPreferredSize(new Dimension(800,200));
         //input field
         inputPanel.setPreferredSize(new Dimension(800,30));
+        arraySizeLabel.setBounds(200,10,70,20);
         inputPanel.add(arraySizeLabel);
+        arraySizeField.setBounds(280,10,50,20);;
         inputPanel.add(arraySizeField);
         //delay field
         inputPanel.add(delayLabel);
+        delayLabel.setBounds(400,10,70,20);
         inputPanel.add(delayField);
+        delayField.setBounds(480,10,50,20);;
         overPanel.add(inputPanel,BorderLayout.NORTH);
         //buttons
         buttonPanel.setPreferredSize(new Dimension(800,30));
@@ -117,14 +120,6 @@ public class Main  {
         frame.add(overPanel,BorderLayout.NORTH);
         frame.setVisible(true);
 
-    }
-}
-
-class AlgorithmPicker{
-    int index;
-
-    public AlgorithmPicker( int index ){
-        this.index = index;
     }
 }
 
