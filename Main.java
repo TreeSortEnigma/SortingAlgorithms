@@ -10,8 +10,11 @@ public class Main  {
 
     public static void main(String[] args) throws InterruptedException {
 
-        //the central hub. this will be given to the UIPanel.
-        SortManager sortManager = new SortManager();
+        //using an arraylist here allows for quick adding and deleting of sorting threads since
+        //execute can only be used once per SortManager.
+        ArrayList<SortManager> managers = new ArrayList<SortManager>();
+        //String to hold algorithm type
+        AlgorithmPicker algType = new AlgorithmPicker(0);
 
         //gui stuff
         JFrame frame = new JFrame("Sorting Algorithm Visualizer");
@@ -25,20 +28,23 @@ public class Main  {
         JLabel resultsLabel = new JLabel( " Results: ");
         JButton addAlgorithm = new JButton("+");
         JTextField arraySizeField = new JTextField("",1);
+        arraySizeField.setText("");
         JTextField delayField = new JTextField(1);
+        delayField.setText("");
         JPanel inputPanel = new JPanel(new FlowLayout());
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel algPanel = new JPanel(new BorderLayout());
 
         //code for the drop down menu. right now this doesn't do anything.
         //additional algorithms can be added to the string array.
-        String[] algMenuOptions = {"Quicksort"};
+        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort"};
         JComboBox algMenu = new JComboBox(algMenuOptions);
         algMenu.setSelectedIndex(0);
         algMenu.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                System.out.println("sort index: " + algMenu.getSelectedIndex());
+                //algMenu.setSelectedIndex(e.);
             }
         });
 
@@ -46,22 +52,32 @@ public class Main  {
         JButton generateButton = new JButton( new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int delay, size;
 
-                if (arraySizeField.getText().trim() == "") {
-                    size = 30;
-                } else {
+                for ( SortManager manager : managers) { // stop current sorting
+                    manager.cancel(true);
+                }
+
+                managers.clear();// delete the manager/sorting thread
+                SortManager sortManager = new SortManager(algMenu.getSelectedIndex()); //replace it with a new one
+                managers.add(sortManager);
+
+                int delay = 50; //default values if the user enters nothing
+                int size = 30;
+
+                if ( !arraySizeField.getText().trim().equals("") ) {  //filter out integer inputs for delay/# of elements.
                     size = Integer.parseInt(arraySizeField.getText());
                 }
-
-                if (delayField.getText().trim() == "") {
-                    delay = 200;
-                } else {
+                if ( !delayField.getText().trim().equals("") ) {
                     delay = Integer.parseInt(delayField.getText());
                 }
-                sortManager.setArray(ArrayGenerator.generateArray(size));
+
+                sortManager.setArray(ArrayGenerator.generateArray(size)); // initialize everything
                 sortManager.setDelay(delay);
                 sortManager.drawBars();
+                sortManager.getUIPanel().setPreferredSize(new Dimension(800, 400));
+                frame.add(sortManager.getUIPanel(),BorderLayout.SOUTH);
+                frame.setVisible(true);
+
             }
         });
         generateButton.setText("Generate!");
@@ -70,16 +86,15 @@ public class Main  {
         JButton sortButton = new JButton( new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                sortManager.execute();
+                for ( SortManager manager : managers)
+                    manager.execute();
             }
         });
         sortButton.setText("Sort!");
 
         //here we add the gui elements onto the frmae.
         //set up the subpanels
-        sortManager.getUIPanel().setPreferredSize(new Dimension(800, 400));
         overPanel.setPreferredSize(new Dimension(800,200));
-        frame.add(sortManager.getUIPanel(),BorderLayout.SOUTH);
         //input field
         inputPanel.setPreferredSize(new Dimension(800,30));
         inputPanel.add(arraySizeLabel);
@@ -103,7 +118,14 @@ public class Main  {
         frame.setVisible(true);
 
     }
+}
 
+class AlgorithmPicker{
+    int index;
+
+    public AlgorithmPicker( int index ){
+        this.index = index;
+    }
 }
 
 abstract class Sortable { //every algorithm will implement this method.
