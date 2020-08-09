@@ -47,7 +47,7 @@ public class BubbleSort extends Sortable {
           sortManager.getUIPanel().repaint();
           
           //adds one to the counter int and prints current step number
-          SortManager.stepCounter(counter);
+          SortManager.stepCounter();
           
           try {
             Thread.sleep(sortManager.getDelay());
