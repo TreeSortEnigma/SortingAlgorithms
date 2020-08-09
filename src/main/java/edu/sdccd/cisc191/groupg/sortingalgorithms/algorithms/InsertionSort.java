@@ -26,6 +26,7 @@ public class InsertionSort extends Sortable {
             j = i;
             while (j > 0 && array[j] < array[j - 1]) {
                 sortManager.swapIndices( j, j-1, array, sortManager );
+                SortManager.stepCounter();
                 try {
                     Thread.sleep(sortManager.getDelay()); // pause the thread
                 } catch (InterruptedException e) {
