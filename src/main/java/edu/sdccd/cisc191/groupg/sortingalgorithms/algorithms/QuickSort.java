@@ -35,8 +35,7 @@ public class QuickSort extends Sortable {
 
             sortManager.highlightedElements()[j] = "red";//highlight this first step
 
-//            sortManager.getUIPanel().repaint();//redraw
-		
+
 	    sortManager.stepCounter();
             Thread.sleep(sortManager.getDelay()); // pause the thread
 
@@ -63,7 +62,6 @@ public class QuickSort extends Sortable {
             }
             sortManager.highlightedElements()[j] = ""; // if we didn't encounter a smaller value than the pivot, return the red highlight to black.
 
-//            sortManager.getUIPanel().repaint();//redraw
 
             printArray(array);
         }

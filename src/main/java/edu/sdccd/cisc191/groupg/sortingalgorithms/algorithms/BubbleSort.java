@@ -36,7 +36,6 @@ public class BubbleSort extends Sortable {
         if(inputArr[j] > inputArr[j+1]) {
 
           sortManager.highlightedElements()[j]= "red";
-//          sortManager.getUIPanel().repaint();
           plusOne = j+1;
 
           tempInt = inputArr[j+1];
@@ -44,8 +43,7 @@ public class BubbleSort extends Sortable {
           inputArr[j] = tempInt;
 
           sortManager.swapIndices( (j+1), plusOne, inputArr, sortManager );
-//          sortManager.getUIPanel().repaint();
-          
+
           //adds one to the counter int and prints current step number
           sortManager.stepCounter();
           try {
@@ -56,11 +54,9 @@ public class BubbleSort extends Sortable {
         }
 
       sortManager.highlightedElements()[j] ="";
-//      sortManager.getUIPanel().repaint();
       }
 
       sortManager.highlightedElements()[j]= "";
-//      sortManager.getUIPanel().repaint();
     }
 
   }
