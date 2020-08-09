@@ -81,7 +81,7 @@ public class SortManager extends SwingWorker {
     }
     
         //counts the number of steps each algorithm takes and prints
-    public static void stepCounter() {
+    public void stepCounter() {
         counter++;
         System.out.println("Number of steps is currently: " + counter);
     }
