@@ -24,15 +24,15 @@ public class InsertionSort extends Sortable {
         int i, j, temp;
         for (i = 1; i < array.length; ++i) {
             j = i;
+            sortManager.highlightedElements()[i] = "green"; // make pivot green
             while (j > 0 && array[j] < array[j - 1]) {
                 sortManager.swapIndices( j, j-1, array, sortManager );
-                SortManager.stepCounter();
+                sortManager.stepCounter();
                 try {
                     Thread.sleep(sortManager.getDelay()); // pause the thread
                 } catch (InterruptedException e) {
                     System.out.println(e);
                 }
-                sortManager.highlightedElements()[i] = "green";
                 sortManager.highlightedElements()[j] = ""; //remove the blue highlights.
                 sortManager.highlightedElements()[j-1] = ""; //remove the blue highlights.
                 --j;

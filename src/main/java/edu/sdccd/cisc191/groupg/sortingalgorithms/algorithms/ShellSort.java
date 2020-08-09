@@ -41,7 +41,7 @@ public class ShellSort extends Sortable {
                     arr[j] = arr[j - gap];
                     sortManager.highlightedElements()[j] = "red";// set pivot to be green.
 //                    sortManager.getUIPanel().repaint();
-                    SortManager.stepCounter();
+                    sortManager.stepCounter();
                     try {
                         Thread.sleep(sortManager.getDelay());
                     } catch (InterruptedException e) {
@@ -49,7 +49,7 @@ public class ShellSort extends Sortable {
                     }
                     sortManager.swapIndices( j, j - gap, arr, sortManager );
 //                    sortManager.getUIPanel().repaint();
-                    SortManager.stepCounter();
+                    sortManager.stepCounter();
                     try {
                         Thread.sleep(sortManager.getDelay());
                     } catch (InterruptedException e) {
