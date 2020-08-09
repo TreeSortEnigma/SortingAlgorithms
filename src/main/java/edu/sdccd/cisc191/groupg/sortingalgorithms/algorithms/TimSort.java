@@ -86,10 +86,15 @@ public class TimSort extends Sortable {
 
     public void timSort(int[] arr) {
         int n = arr.length;
-        for (int i = 0; i < n; i += n/2) {
-            insertionSort(arr, i, Math.min((i + (n/2)-1), (n-1)));
+        int div = 4;
+        int bite = n/div;
+        if(n % div != 0) {
+            bite+=1;
         }
-        for (int size = n/2; size < n; size = 2 * size){
+        for (int i = 0; i < n; i += bite) {
+            insertionSort(arr, i, Math.min((i + bite-1), (n-1)));
+        }
+        for (int size = bite; size < n; size = 2 * size){
             for (int left = 0; left <n; left += 2 * size){
                 int mid = left + size -1;
                 int right = Math.min((left + 2 * size - 1), (n -1));
