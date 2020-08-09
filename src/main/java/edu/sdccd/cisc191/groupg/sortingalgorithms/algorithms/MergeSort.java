@@ -6,6 +6,10 @@
 //Description:   This file contains the necessary code to complete a MergeSort Algorithm.
 //Reference:     https://www.geeksforgeeks.org/merge-sort/
 
+package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
+
+import edu.sdccd.cisc191.groupg.sortingalgorithms.SortManager;
+
 package com.company;
 
 
