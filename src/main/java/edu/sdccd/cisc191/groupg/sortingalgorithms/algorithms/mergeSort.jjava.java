@@ -1,7 +1,12 @@
 package com.company;
-class MergeSort extends Sortable {
+
+
+    public class MergeSort extends Sortable {
+    
     long delay;
-    public QuickSort(int delay) { // set delay time in between steps
+    
+    public MergeSort(int delay) { // set delay time in between steps
+       
         this.delay = delay;
     }
    
