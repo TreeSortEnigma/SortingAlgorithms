@@ -6,6 +6,8 @@ import javax.swing.SwingWorker;
 import java.awt.Rectangle;
 
 public class SortManager extends SwingWorker {
+    
+    private int counter = 0;
     private final int barOffset = 100;
     private final int barWidth = 5;
     private final UIPanel uiPanel; // This is where all the UI elements will be. Also draws the sorting bars.
@@ -79,8 +81,9 @@ public class SortManager extends SwingWorker {
     }
     
         //counts the number of steps each algorithm takes and prints
-    public static void stepCounter(int counter) {
-      System.out.println("Number of steps is currently: " + counter);
+    public static void stepCounter() {
+        counter++;
+        System.out.println("Number of steps is currently: " + counter);
     }
 
     //various accessor/mutators
