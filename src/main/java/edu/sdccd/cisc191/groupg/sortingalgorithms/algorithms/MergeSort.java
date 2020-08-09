@@ -1,3 +1,11 @@
+// File:         MergeSort.java
+// Created:      08/08/2020
+// Last Changed: 08/08/2020
+// Author:       Hedy Wang
+//               hewang985@gmail.com
+//Description:   This file contains the necessary code to complete a MergeSort Algorithm.
+//Reference:     https://www.geeksforgeeks.org/merge-sort/
+
 package com.company;
 
 
