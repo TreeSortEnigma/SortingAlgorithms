@@ -3,6 +3,8 @@
 // Last Changed: 08/08/2020
 // Author:       Abigail Swinson
 //                abigail.swinson@yahoo.com
+//Description:    This file contains the necessary code to visualize the BubbleSort sorting algorithm and keeping track of the steps taken
+//                during the sorting process.
 
 
 package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
