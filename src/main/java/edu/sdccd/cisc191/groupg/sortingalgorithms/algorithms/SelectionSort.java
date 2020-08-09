@@ -33,6 +33,7 @@ public class SelectionSort extends Sortable{
 
             sortManager.swapIndices( i, smallestNumber, array, sortManager );
 
+            SortManager.stepCounter();
             try {
                 Thread.sleep(sortManager.getDelay()); // pause the thread
             } catch (InterruptedException e) {
