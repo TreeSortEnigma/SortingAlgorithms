@@ -36,7 +36,8 @@ public class QuickSort extends Sortable {
             sortManager.highlightedElements()[j] = "red";//highlight this first step
 
 //            sortManager.getUIPanel().repaint();//redraw
-
+		
+	    SortManager.stepCounter();
             Thread.sleep(sortManager.getDelay()); // pause the thread
 
             // If we encounter a smaller value than the pivot,
@@ -52,7 +53,8 @@ public class QuickSort extends Sortable {
                 // repaint will always come before sleeping, so the user can see the change in color for a moment.
 
                 //System.out.println("value of i after increment: " + i);
-
+		
+		SortManager.stepCounter();
                 Thread.sleep(sortManager.getDelay());//pause since a swap occured.
 
                 sortManager.highlightedElements()[i] = ""; //remove the blue highlights.
@@ -66,7 +68,8 @@ public class QuickSort extends Sortable {
             printArray(array);
         }
         sortManager.swapIndices( (i+1), highIndex, array, sortManager );// swap arr[i+1] and arr[high], the latter of which which may also be the pivot. swap their respective bars.
-
+	
+	SortManager.stepCounter();
         Thread.sleep(sortManager.getDelay());//pause since a swap occurred
 
         sortManager.highlightedElements()[(i+1)] = ""; //remove the blue highlights.
