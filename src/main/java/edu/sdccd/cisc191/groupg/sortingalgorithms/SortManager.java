@@ -70,11 +70,17 @@ public class SortManager extends SwingWorker {
         uiPanel.repaint();
         timesInitialized++;
     }
+    
 
     @Override
     protected Object doInBackground() { //kicks off a worker thread to begin the sorting.
         algorithm.beginSort(array, this);
         return null;
+    }
+    
+        //counts the number of steps each algorithm takes and prints
+    public static void stepCounter(int counter) {
+      System.out.println("Number of steps is currently: " + counter);
     }
 
     //various accessor/mutators
