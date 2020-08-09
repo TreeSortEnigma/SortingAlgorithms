@@ -1,3 +1,8 @@
+/*
+Author: Andrew Leu 
+FileName: ShellSort
+Description of File: The shell sorting algorithm with gui implementation.  
+ */
 package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
 
 import edu.sdccd.cisc191.groupg.sortingalgorithms.SortManager;
