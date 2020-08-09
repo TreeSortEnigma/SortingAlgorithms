@@ -1,3 +1,11 @@
+// File:         Main.java
+// Created:      
+// Last Changed: 08/08/2020
+// Author:       Hailun Xu
+// 
+//Description:    Driver for the program.  Initializes UIPanel and the sort manager which chooses the algorithms displayed.
+
+
 package edu.sdccd.cisc191.groupg.sortingalgorithms;
 import javax.swing.*;
 import java.awt.*;
