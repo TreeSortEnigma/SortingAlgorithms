@@ -25,7 +25,7 @@ public class BubbleSort extends Sortable {
   
   // this is the actual BubbleSort algorithm which takes in the int[] to be sorted
   public void sort(int[] inputArr, SortManager sortManager) {
-    int i, j, plusOne, tempInt, counter= 0;
+    int i, j, plusOne, tempInt = 0;
     int length = inputArr.length;
 
     for( i = 0; i < length-1; i++) //loops over the indices of the array
@@ -47,7 +47,6 @@ public class BubbleSort extends Sortable {
           sortManager.getUIPanel().repaint();
           
           //adds one to the counter int and prints current step number
-          counter++;
           SortManager.stepCounter(counter);
           
           try {
