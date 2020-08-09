@@ -1,3 +1,8 @@
+/*
+Author: Hailun Xu
+Filename: UIPanel.java
+Description: The graphical driver which updates the GUI whenever needed.  
+*/
 package edu.sdccd.cisc191.groupg.sortingalgorithms;
 
 import javax.swing.*;
