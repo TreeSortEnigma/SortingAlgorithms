@@ -22,18 +22,18 @@ public class BubbleSort extends Sortable {
   public void beginSort(int[] array, SortManager sortManager) {
       sort(array, sortManager);
   }
-  
-  // this is the actual BubbleSort algorithm which takes in the int[] to be sorted
+
   public void sort(int[] inputArr, SortManager sortManager) {
-    int i, j, plusOne, tempInt = 0;
+    int i, j, plusOne, tempInt, counter= 0;
     int length = inputArr.length;
 
     for( i = 0; i < length-1; i++) //loops over the indices of the array
     {
+
       for( j = 0; j < length-1-i; j++) //loops over the sub-indices
       {
-        if(inputArr[j] > inputArr[j+1]) //checks to see if a swap is needed
-        {
+
+        if(inputArr[j] > inputArr[j+1]) {
 
           sortManager.highlightedElements()[j]= "red";
 //          sortManager.getUIPanel().repaint();
@@ -48,7 +48,6 @@ public class BubbleSort extends Sortable {
           
           //adds one to the counter int and prints current step number
           sortManager.stepCounter();
-          
           try {
             Thread.sleep(sortManager.getDelay());
           } catch (InterruptedException e) {
@@ -63,6 +62,7 @@ public class BubbleSort extends Sortable {
       sortManager.highlightedElements()[j]= "";
 //      sortManager.getUIPanel().repaint();
     }
-  }
-}
 
+  }
+
+}
