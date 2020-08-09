@@ -1,3 +1,10 @@
+// File:         SortManager.java
+// Created:      
+// Last Changed: 08/08/2020
+// Author:       Hailun Xu
+// 
+//Description:    Chooses algorithms to be displayed and changes the GUI to match which algorithm is being visualized.
+
 package edu.sdccd.cisc191.groupg.sortingalgorithms;
 
 import edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms.*;
