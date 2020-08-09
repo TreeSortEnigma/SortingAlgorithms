@@ -1,5 +1,11 @@
-package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
+// File:         BubbleSort.java
+// Created:      07/16/2020
+// Last Changed: 08/08/2020
+// Author:       Abigail Swinson
+//                abigail.swinson@yahoo.com
 
+
+package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
 import edu.sdccd.cisc191.groupg.sortingalgorithms.SortManager;
 
 public class BubbleSort extends Sortable {
@@ -14,18 +20,18 @@ public class BubbleSort extends Sortable {
   public void beginSort(int[] array, SortManager sortManager) {
       sort(array, sortManager);
   }
-
+  
+  // this is the actual BubbleSort algorithm which takes in the int[] to be sorted
   public void sort(int[] inputArr, SortManager sortManager) {
     int i, j, plusOne, tempInt, counter= 0;
     int length = inputArr.length;
 
     for( i = 0; i < length-1; i++) //loops over the indices of the array
     {
-
       for( j = 0; j < length-1-i; j++) //loops over the sub-indices
       {
-
-        if(inputArr[j] > inputArr[j+1]) {
+        if(inputArr[j] > inputArr[j+1]) //checks to see if a swap is needed
+        {
 
           sortManager.highlightedElements()[j]= "red";
           sortManager.getUIPanel().repaint();
@@ -37,31 +43,25 @@ public class BubbleSort extends Sortable {
 
           sortManager.swapIndices( (j+1), plusOne, inputArr, sortManager );
           sortManager.getUIPanel().repaint();
-
+          
+          //adds one to the counter int and prints current step number
           counter++;
           SortManager.stepCounter(counter);
+          
           try {
             Thread.sleep(sortManager.getDelay());
           } catch (InterruptedException e) {
             System.out.println(e);
           }
-
-
         }
 
       sortManager.highlightedElements()[j] ="";
       sortManager.getUIPanel().repaint();
-
       }
 
       sortManager.highlightedElements()[j]= "";
       sortManager.getUIPanel().repaint();
-
     }
-
-
-
   }
-
 }
 
