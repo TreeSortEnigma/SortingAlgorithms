@@ -80,6 +80,7 @@ package com.company;
         
         sortManager.getUIPanel().repaint();//redraw
 
+        SortManager.stepCounter();
         Thread.sleep(sortManager.getDelay()); // pause the thread
 
     }
@@ -95,6 +96,7 @@ package com.company;
 
         sortManager.getUIPanel().repaint();//redraw
 
+        SortManager.stepCounter();
         Thread.sleep(sortManager.getDelay()); // pause the thread
    
     }
