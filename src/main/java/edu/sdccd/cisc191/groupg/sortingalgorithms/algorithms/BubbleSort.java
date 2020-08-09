@@ -16,42 +16,52 @@ public class BubbleSort extends Sortable {
   }
 
   public void sort(int[] inputArr, SortManager sortManager) {
-    int i, j, plusOne, tempInt = 0;
+    int i, j, plusOne, tempInt, counter= 0;
     int length = inputArr.length;
 
-
-    for (i = 0; i < length - 1; i++) //loops over the indices of the array
+    for( i = 0; i < length-1; i++) //loops over the indices of the array
     {
 
-      for (j = 0; j < length - 1 - i; j++) //loops over the sub-indices
+      for( j = 0; j < length-1-i; j++) //loops over the sub-indices
       {
 
-        if (inputArr[j] > inputArr[j + 1]) {
+        if(inputArr[j] > inputArr[j+1]) {
 
-          sortManager.highlightedElements()[j] = "red";
-//          sortManager.getUIPanel().repaint();
-          plusOne = j + 1;
+          sortManager.highlightedElements()[j]= "red";
+          sortManager.getUIPanel().repaint();
+          plusOne = j+1;
 
-          tempInt = inputArr[j + 1];
-          inputArr[j + 1] = inputArr[j];
+          tempInt = inputArr[j+1];
+          inputArr[j+1] = inputArr[j];
           inputArr[j] = tempInt;
 
+          sortManager.swapIndices( (j+1), plusOne, inputArr, sortManager );
+          sortManager.getUIPanel().repaint();
 
-          sortManager.swapIndices((j + 1), plusOne, inputArr, sortManager);
-//          sortManager.getUIPanel().repaint();
-
+          counter++;
+          SortManager.stepCounter(counter);
           try {
             Thread.sleep(sortManager.getDelay());
           } catch (InterruptedException e) {
             System.out.println(e);
           }
+
+
         }
-        sortManager.highlightedElements()[j] = "";
-//      sortManager.getUIPanel().repaint();
+
+      sortManager.highlightedElements()[j] ="";
+      sortManager.getUIPanel().repaint();
+
       }
 
-      sortManager.highlightedElements()[j] = "";
-//      sortManager.getUIPanel().repaint();
+      sortManager.highlightedElements()[j]= "";
+      sortManager.getUIPanel().repaint();
+
     }
+
+
+
   }
+
 }
+
