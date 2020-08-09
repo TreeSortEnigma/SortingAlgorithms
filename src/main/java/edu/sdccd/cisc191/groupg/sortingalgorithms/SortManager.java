@@ -45,6 +45,9 @@ public class SortManager extends SwingWorker {
             case 4 : algorithm = new InsertionSort(delay);
                 System.out.println("insertion sort selected");
                 break;
+            case 5 : algorithm = new TimSort(delay);
+                System.out.println("tim sort selected");
+                break;
         }
     }
 
@@ -91,6 +94,12 @@ public class SortManager extends SwingWorker {
     public void stepCounter() {
         counter++;
         System.out.println("Number of steps is currently: " + counter);
+    }
+
+    public void setBarAndRePaint(int i, int value, SortManager sortManager) {
+        Rectangle rect = new Rectangle(i * 20 + barOffset, barOffset, barWidth, value);
+        setBar(i, rect);
+        sortManager.getUIPanel().repaint();//redraw
     }
 
     //various accessor/mutators

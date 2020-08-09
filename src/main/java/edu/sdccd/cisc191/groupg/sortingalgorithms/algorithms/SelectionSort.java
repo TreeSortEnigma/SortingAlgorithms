@@ -1,7 +1,7 @@
 // File:         SelectionSort.java
 // Created:      07/16/2020
 // Last Changed: 08/08/2020
-// Author:       
+// Author:       Indigo Columna
 // 
 //Description:    This file contains the necessary code to complete a SelectionSort Algorithm.
 

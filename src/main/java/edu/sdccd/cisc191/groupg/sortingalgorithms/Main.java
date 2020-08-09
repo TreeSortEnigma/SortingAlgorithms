@@ -40,8 +40,9 @@ public class Main  {
         JPanel buttonPanel = new JPanel(new FlowLayout());
         JPanel algPanel = new JPanel(new BorderLayout());
 
-        //Prints out selected Algorithm
-        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort", "InsertionSort",};
+        //code for the drop down menu. right now this doesn't do anything.
+        //additional algorithms can be added to the string array.
+        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort", "InsertionSort","TimSort"};
         JComboBox algMenu = new JComboBox(algMenuOptions);
         algMenu.setSelectedIndex(0);
         algMenu.addActionListener(new AbstractAction() {
