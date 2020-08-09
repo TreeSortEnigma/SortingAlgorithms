@@ -24,9 +24,9 @@ public class Main  {
         JLabel delayLabel = new JLabel("Delay(ms): ");
         JLabel resultsLabel = new JLabel( " Results: ");
         JTextField arraySizeField = new JTextField("",1);
-        arraySizeField.setText("");
+        arraySizeField.setText("30");
         JTextField delayField = new JTextField(1);
-        delayField.setText("");
+        delayField.setText("50");
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(null);
         JPanel buttonPanel = new JPanel(new FlowLayout());
@@ -34,7 +34,7 @@ public class Main  {
 
         //code for the drop down menu. right now this doesn't do anything.
         //additional algorithms can be added to the string array.
-        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort", "InsertionSort"};
+        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort", "InsertionSort",};
         JComboBox algMenu = new JComboBox(algMenuOptions);
         algMenu.setSelectedIndex(0);
         algMenu.addActionListener(new AbstractAction() {
@@ -64,9 +64,15 @@ public class Main  {
 
                 if ( !arraySizeField.getText().trim().equals("") ) {  //filter out integer inputs for delay/# of elements.
                     size = Integer.parseInt(arraySizeField.getText());
+                    if (Math.abs(size) > 40){// constrain to array size 40
+                        size = 40;
+                    }
                 }
                 if ( !delayField.getText().trim().equals("") ) {
                     delay = Integer.parseInt(delayField.getText());
+                    if (Math.abs(delay) > 1000){// constrain to 1 second delay
+                        delay = 1000;
+                    }
                 }
 
                 sortManager.setArray(ArrayGenerator.generateArray(size)); // initialize everything
