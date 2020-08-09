@@ -1,8 +1,10 @@
-package com.company;
+package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
+
+import edu.sdccd.cisc191.groupg.sortingalgorithms.SortManager;
 
 // here we have quicksort being used as an example. every time the the left to right marker is
 // incremented, a pause occurs. any time values are swapped, an second pause also occurs.
-class QuickSort extends Sortable {
+public class QuickSort extends Sortable {
 
     long delay;
 
@@ -26,7 +28,7 @@ class QuickSort extends Sortable {
 
             sortManager.highlightedElements()[j] = "red";//highlight this first step
 
-            sortManager.getUIPanel().repaint();//redraw
+//            sortManager.getUIPanel().repaint();//redraw
 
             Thread.sleep(sortManager.getDelay()); // pause the thread
 
@@ -52,7 +54,7 @@ class QuickSort extends Sortable {
             }
             sortManager.highlightedElements()[j] = ""; // if we didn't encounter a smaller value than the pivot, return the red highlight to black.
 
-            sortManager.getUIPanel().repaint();//redraw
+//            sortManager.getUIPanel().repaint();//redraw
 
             printArray(array);
         }

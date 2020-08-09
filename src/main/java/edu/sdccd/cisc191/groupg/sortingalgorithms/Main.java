@@ -1,14 +1,13 @@
-package com.company;
+package edu.sdccd.cisc191.groupg.sortingalgorithms;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
-import java.util.Random;
 
 
 public class Main  {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         //using an arraylist here allows for quick adding and deleting of sorting threads since
         //execute can only be used once per SortManager.
@@ -35,7 +34,7 @@ public class Main  {
 
         //code for the drop down menu. right now this doesn't do anything.
         //additional algorithms can be added to the string array.
-        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort"};
+        String[] algMenuOptions = {"QuickSort", "SelectionSort", "BubbleSort", "ShellSort", "InsertionSort"};
         JComboBox algMenu = new JComboBox(algMenuOptions);
         algMenu.setSelectedIndex(0);
         algMenu.addActionListener(new AbstractAction() {
@@ -119,28 +118,5 @@ public class Main  {
 
         frame.add(overPanel,BorderLayout.NORTH);
         frame.setVisible(true);
-
     }
 }
-
-abstract class Sortable { //every algorithm will implement this method.
-
-    //this method is called beginSort() rather than sort() to avoid interfering with recursive sorts.
-    //call sort() inside this method to kick off a recursive sort.
-    public abstract void beginSort( int[] array, SortManager sortManager);
-}
-
-
-class ArrayGenerator { //returns a randomly generated array of certain size
-
-    static int[] generateArray( int size) {
-        Random random = new Random();
-        int[] array = new int[size];
-        for( int i = 0; i < size; i++ ) {
-            array[i] = random.nextInt(100);
-        }
-        return array;
-    }
-}
-
-

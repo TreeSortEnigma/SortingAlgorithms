@@ -1,6 +1,6 @@
-import java.util.Arrays;
+package edu.sdccd.cisc191.groupg.sortingalgorithms.algorithms;
 
-class countingSort {
+class CountingSort {
   public static int[] countingSort(int[] inputArr) {
     int i, j, k, l, m, max = 0;
     int length = inputArr.length;

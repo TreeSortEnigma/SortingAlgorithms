@@ -1,4 +1,4 @@
-package com.company;
+package edu.sdccd.cisc191.groupg.sortingalgorithms;
 
 import javax.swing.*;
 import java.awt.*;
